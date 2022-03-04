@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Financiamento da Educação Pública Brasileira - Redistribuição de Recursos via Fundeb</title>
+    <!-- Bootstrap CSS -->
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="dist/css/libs.min.css" rel="stylesheet">
+    <link href="dist/css/style.min.css" rel="stylesheet">
+
+    <!-- SITE CEM SIMULATOR -->
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h2>Financiamento da Educação Pública: Qual o efeito do Fundeb no combate à desigualdade entre estados?</h2>
+        <hr>
+
+        <div class="row mt-3">
+            <div class="accordion px-0" id="accordionIntro">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingIntro">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#txtIntro" aria-controls="txtIntro">
+                            <b>Introdução</b>
+                        </button>
+                    </h3>
+                    <div id="txtIntro" class="accordion-collapse collapse" aria-labelledby="headingIntro" data-bs-parent="#accordionIntro">
+                        <div class="accordion-body">
+                            <p><b>Quantos reais cada estado do Brasil dispunha para gastar com os alunos da educação básica entre 2009 e 2020? E de que maneira os mecanismos de redistribuição e de suplementação de recursos presentes no Fundeb impactam as desigualdades de financiamento existentes?</b></p>
+                            <p>Para responder a estas perguntas, apresentaremos três cenários para demonstrar o efeito das regras de vinculação e de redistribuição dos recursos destinados à educação das redes estaduais no Brasil.</p>
+                            <p>Antes de apresentarmos os cenários, é necessário esclarecer alguns pontos sobre o financiamento da educação pública no Brasil.</p>
+                            <ul>
+                                <li>A Constituição Federal de 1988 estabeleceu que a educação básica gratuita é um direito universal sendo sua responsabilidade compartilhada entre a União, estados e municípios. O artigo 212 do documento define que um percentual mínimo de impostos e transferências dos entes federados sejam aplicados em manutenção e desenvolvimento do ensino (MDE). Assim, estados e municípios têm 25% de seus recursos constitucionalmente vinculados à aplicação em MDE.</li>
+                                <li>Em 2007, foi criado o Fundo de Manutenção e Desenvolvimento da Educação Básica (Fundeb) com o intuito de promover a redistribuição de recursos destinados à educação básica entre redes de ensino do mesmo território e a suplementação do governo federal para o combate à desigualdade nas condições de financiamento. Através deste mecanismo contábil de âmbito estadual, estados e municípios repassam a maior parte de seus recursos vinculados para o fundo, que redistribui os valores conforme o número de matrículas da educação básica oferecido por cada rede de ensino no território, reduzindo assim a desigualdade de recursos. A União aumentou em 10% a soma total de recursos do Fundeb e distribuiu, até 2020, este suplemento entre os fundos estaduais com menos verba por aluno, estabelecendo um valor mínimo de investimento por estudante da educação básica.</li>
+                            </ul>
+                            <p>Considerando os mecanismos de financiamento da educação pública brasileira brevemente descritos acima, o presente estudo desenvolveu três cenários para avaliar o impacto da complementação da União no Fundeb, além de esclarecer alguns pontos sobre a redistribuição de recursos feita por este mecanismo. É importante ressaltar que os cenários criados consideram as receitas disponíveis pelos estados, e não como os recursos foram efetivamente gastos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção Cenários -->
+        <div class="row">
+            <div class="card">
+                <div class="card-header py-3">
+                    <h3>Cenários</h3>
+                </div>
+                <div class="card-body" id="card_cenarios">
+
+                    <div class="accordion my-3" id="accordionCenarios">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingCenarios">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#txtCenarios" aria-controls="txtCenarios">
+                                    <b>Descrição dos Cenários</b>
+                                </button>
+                            </h2>
+                            <div id="txtCenarios" class="accordion-collapse collapse" aria-labelledby="headingCenarios" data-bs-parent="#accordionCenarios">
+                                <div class="accordion-body">
+                                    <p><b>Cenário A: </b>Neste cenário, cada UF arrecada impostos e destina uma parte para educação, assim como estipulado por suas respectivas <a href="" data-bs-toggle="modal" data-bs-target="#tblVinculacao">Constituições Estaduais</a>.</p>
+                                    <p><b>Cenário B: </b>Representa o cálculo da receita potencial por aluno da educação básica em cada estado após a redistribuição de recursos dentro do fundo estadual do Fundeb.</p>
+                                    <p><b>Cenário C: </b>Representa o cálculo da receita potencial por aluno da educação básica em cada estado após a redistribuição de recursos dentro do fundo estadual do Fundeb e a complementação da União.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <b>Leituras Guiadas: </b>
+                    <ul>
+                        <li><a href="#cenarios_ano" onclick="intro_complementacao.start();">Como a complementação da União atua na desigualdade financeira entre os estados?</a></li>
+                        <li><a href="#cenarios_ano" onClick="intro_efeito_reds.start()">Quais são os efeitos da redistribuição de recursos feita pelo Fundeb e da complementação da União?</a></li>
+                        <li><a href="#row_cenarios_maps" onClick="intro_desi_espacial.start()">Como a desigualdade da receita potencial por aluno se reflete no território brasileiro e como os mecanismos de redistribuição atuam sobre isso?</a></li>
+                    </ul>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="">Ano:</label>
+                                <select class="form-select" name="cenarios_ano" id="cenarios_ano">
+                                    <option value="2009">2009</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2020" selected>2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cenarios_body">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-12 text-center">
+                                <figure class="highcharts-figure">
+                                    <div id="container"></div>
+                                </figure>
+                            </div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table align-middle" id="tbl_cenarios">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th rowspan="2" class="align-middle">Ano/Cenário</th>
+                                            <th colspan="5" scope="col">Métricas</th>
+                                        </tr>
+                                        <tr class="align-middle">
+                                            <th scope="col">Valor mínimo</th>
+                                            <th scope="col">Valor médio BR</th>
+                                            <th scope="col">Valor máximo</th>
+                                            <th scope="col">Amplitude</th>
+                                            <th scope="col">Índice de Gini</th>
+                                        </tr>
+                                        <tr class="table-dark">
+                                            <th colspan="6" id="tbl_ano">2020</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr>
+                                            <td scope="row" class="text-left" style="background-color:#1b9f79; color:white;">A) Receita potencial da UF</td>
+                                            <td id="A_menor"></td>
+                                            <td id="A_media"></td>
+                                            <td id="A_maior"></td>
+                                            <td id="A_amplitude"></td>
+                                            <td id="A_gini"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row" style="background-color:#dc6004; color:white;">B) Receita potencial com FUNDEB sem Complementação</td>
+                                            <td id="B_menor"></td>
+                                            <td id="B_media"></td>
+                                            <td id="B_maior"></td>
+                                            <td id="B_amplitude"></td>
+                                            <td id="B_gini"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row" style="background-color:#736fb3; color:white;">C) Receita potencial com FUNDEB e Complementação</td>
+                                            <td id="C_menor"></td>
+                                            <td id="C_media"></td>
+                                            <td id="C_maior"></td>
+                                            <td id="C_amplitude"></td>
+                                            <td id="C_gini"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="row_cenarios_maps">
+                            <div class="col-xl-4 text-center">
+                                <div id="map_a"></div>
+                            </div>
+                            <div class="col-xl-4 text-center">
+                                <div id="map_b"></div>
+                            </div>
+                            <div class="col-xl-4 text-center">
+                                <div id="map_c"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção Intermediária -->
+        <div class="row my-5">
+            <div class="col-12">
+                <p>O que explica a diferença de valores entre as UFs?<br />Além de porcentagens diferentes de vinculação, dois principais parâmetros têm grande impacto na receita potencial por aluno: <b>Arrecadação</b> e <b>Matrículas</b></p>
+                <p>Na seção abaixo fornecemos visualizações dos dados sobre a evolução de arrecadação estaduais e os números das matrículas para o período entre 2009 e 2020 que demonstram como esses parâmetros impactam na composição da receita potencial por aluno</p>
+            </div>
+        </div>
+
+        <!-- Seleção de Parâmetros -->
+        <div class="row justify-content-center my-2">
+            <div class="col-12">
+                <ul class="list-group list-group-horizontal text-center justify-content-center">
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio_parameters" id="arrecadacaoRadio" value="arrecadacao" onchange="changeCard()" checked>
+                            <label class="form-check-label" for="arrecadacaoRadio">Arrecadação</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio_parameters" id="matriculasRadio" value="matriculas" onchange="changeCard()">
+                            <label class="form-check-label" for="matriculasRadio">Matrículas</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Seção Parâmetros [Arrecadação/Matrículas] -->
+        <div class="row">
+            <div class="card" id="card_arrecadacao">
+                <div class="card-header py-3">
+                    <h3>Principais Parâmetros - Arrecadação</h3>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="accordionVinculacao">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingVinculacao">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tblVinculacao" aria-controls="tblVinculacao">
+                                    <b>Tabela de Vinculação - Como estados se posicionam em relação ao percentual mínimo de aplicação em MDE</b>
+                                </button>
+                            </h2>
+                            <div id="tblVinculacao" class="accordion-collapse collapse" aria-labelledby="headingVinculacao" data-bs-parent="#accordionVinculacao">
+                                <div class="accordion-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col" class="text-center">Artigos (Vinculação de Recursos)</th>
+                                                <th scope="col" class="text-center">Percentual mínimo de aplicação em MDE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-left">Acre</td><td class="text-center">Artigo 197</td><td class="text-center">25,5% (30%, sendo 85% deste montante com destinação para MDE)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Alagoas</td><td class="text-center">Artigo 198</td><td class="text-center">25%, com indicação específica sobre o ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Amapá</td><td class="text-center">Artigo 289</td><td class="text-center">28% estado, 25% municípios</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Amazonas</td><td class="text-center">Artigo 200</td><td class="text-center">25%, sendo 5% deste montante com destinação específica para o ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Bahia</td><td class="text-center">Artigo 258</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Ceará</td><td class="text-center">Artigo 216</td><td class="text-center">25%, sendo 5% deste montante com destinação específica para o ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Distrito Federal</td><td class="text-center">Artigo 241</td><td class="text-center">25%, sendo 3% percentual específico para o ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Espírito Santo</td><td class="text-center">Artigo 178</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Goiás</td><td class="text-center">Artigo 158</td><td class="text-center">25% (28,25%, sendo 3,25% percentual específico para o ensino superior)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Maranhão</td><td class="text-center">Artigo 220</td><td class="text-center">25%, sendo 20% deste montante com destinação específica para o ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Mato Grosso</td><td class="text-center">Artigo 245</td><td class="text-center">32,5% para MDE (35%, sendo 2,5% da receita corrente líquida (RCL) para o ensino superior)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Mato Grosso do Sul</td><td class="text-center">Artigo 198</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Minas Gerais</td><td class="text-center">Artigo 201</td><td class="text-center">25%, sendo 2% da receita orçamentária corrente ordinária (ROC) do estado para instituições de ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Pará</td><td class="text-center">Artigo 283</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Paraíba</td><td class="text-center">Artigo 210</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Paraná</td><td class="text-center">Artigo 185</td><td class="text-center">30%, estado e 25%, municípios</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Pernambuco</td><td class="text-center">Artigo 185</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Piauí</td><td class="text-center">Artigo 223</td><td class="text-center">25% (30%, sendo 5% das receitas destinadas ao ensino superior e demais finalidades)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Rio Grande do Norte</td><td class="text-center">Artigo 139</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Rio Grande do Sul</td><td class="text-center">Artigo 201</td><td class="text-center">35%, sendo 0,5% da receita líquida de impostos para o ensino superior e excluindo-se a educação infantil</td>
+                                            </tr>
+                                            <tr id="rowVincRJ">
+                                                <td class="text-left">Rio de Janeiro</td><td class="text-center">Artigo 314</td><td class="text-center">25% (STF barrou vinculação de 35%)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Rondônia</td><td class="text-center">Artigo 189</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Roraima</td><td class="text-center">Artigo 152</td><td class="text-center">25%, com possibilidade de destinação ao ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Santa Catarina</td><td class="text-center">Artigo 167</td><td class="text-center">25%, sendo 5% deste montante com destinação específica para o ensino superior</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">São Paulo</td><td class="text-center">Artigo 255</td><td class="text-center">30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Sergipe</td><td class="text-center">Artigo 218</td><td class="text-center">25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">Tocantins</td><td class="text-center">Artigo 128</td><td class="text-center">25%</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <b>Leituras Guiadas: </b>
+                    <ul>
+                        <li><a href="#card_arrecadacao" onclick="intro_arr_vinculacao.start()">Como as diferentes regras de vinculação dos estados afetam a desigualdade de recursos para Educação?</a></li>
+                        <li><a href="#!" onclick="intro_arrecadacao.start()">Como a desigualdade na arrecadação entre os estados leva a desigualdade de recursos para Educação?</a></li>
+                    </ul>
+                    <div id="chart_arrecadacao">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radioArrecadacaoGrafico" id="arrecadacaoRelativa" value="relativa" onclick="callArrecadacaoChart()" checked>
+                            <label class="form-check-label" for="arrecadacaoRelativa">Arrecadação Relativa (per capita)</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radioArrecadacaoGrafico" id="arrecadacaoAbsoluta" value="absoluta" onclick="callArrecadacaoChart()">
+                            <label class="form-check-label" for="arrecadacaoAbsoluta">Arrecadação Absoluta</label>
+                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="hc_container_arrecadacao" style="height:350px"></div>
+                        </figure>
+                    </div>
+                    <div class="row" id="row_map_arr">
+                        <div class="col-xl-9 col-sm-12">
+                            <div id="map_arrecadacao"></div>
+                        </div>
+                        <div class="col-xl-3 col-sm-12">
+                            <p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioArrecadacaoMapa" id="arrecadacaoVariacaoMapa" value="variacao" onclick="" checked>
+                                    <label class="form-check-label" for="arrecadacaoVariacaoMapa">Variação no tempo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioArrecadacaoMapa" id="arrecadacaoAbsolutaMapa" value="absoluta" onclick="">
+                                    <label class="form-check-label" for="arrecadacaoAbsolutaMapa">Indicador de desigualdade</label>
+                                </div>
+                            </p>
+                            <div class="form-group" id="arr_var_radio">
+                                <label for="">Ano Inicial:</label>
+                                <select class="form-select my-1" name="arr_var_ini_ano" id="arr_var_ini_ano">
+                                    <option value="2009" selected>2009</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2018">2018</option>
+                                </select>
+                                <label for="">Ano Final:</label>
+                                <select class="form-select my-1" id="arr_var_fin_ano">
+                                    <option value="2012">2012</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2020" selected>2020</option>
+                                </select>
+                            </div>
+                            <div class="form-group d-none" id="arr_abs_radio">
+                                <label for="">Ano:</label>
+                                <select class="form-select" id="arrecadacao_abs_ano" onchange="updateArrMap()">
+                                    <option value="2009">2009</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2020" selected>2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card d-none" id="card_matriculas">
+                <div class="card-header py-3">
+                    <h3>Principais Parâmetros - Matrículas</h3>
+                </div>
+                <div class="card-body">
+                    <b>Leituras Guiadas: </b>
+                    <ul>
+                        <li><a href="#!" onclick="intro_matriculas.start()">Como o número de matrículas entra no cálculo de redistribuição de recursos?</a></li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-12">
+                            <figure class="highcharts-figure">
+                                <div id="chart_matriculas"></div>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="row" id="row_map_matri">
+                        <div class="col-md-12 col-xl-7">
+                            <div id="map_matriculas"></div>
+                        </div>
+                        <div class="col-md-12 col-xl-5" id="control_matri">
+                            <div class="card" id="dimensoes_matri">
+                                <div class="card-header">
+                                    <h4>Dimensões</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <b>Rede de ensino</b>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="matri_rede" id="matri_fed" value="Federal">
+                                                      <label class="form-check-label" for="matri_fed">Federal</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="matri_rede" id="matri_est" value="Estadual" checked>
+                                                      <label class="form-check-label" for="matri_est">Estadual</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="matri_rede" id="matri_mun" value="Municipal">
+                                                      <label class="form-check-label" for="matri_mun">Municipal</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="matri_rede" id="matri_todas" value="Todas">
+                                                      <label class="form-check-label" for="matri_todas">Todas</label>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-6">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="radio" name="matri_rede" id="matri_priv" value="Privada">
+                                                      <label class="form-check-label" for="matri_priv">Privada</label>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <div class="row">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 border-start">
+                                            <b>Etapa de ensino</b>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" name="matri_etapa" id="matri_ei" value="EI" disabled>
+                                                      <label class="form-check-label" for="matri_ei">Ed. Infantil</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" name="matri_etapa" id="matri_ef" value="EF" checked disabled>
+                                                      <label class="form-check-label" for="matri_ef">E. Fundamental</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" name="matri_etapa" id="matri_em" value="EM" checked disabled>
+                                                      <label class="form-check-label" for="matri_em">E. Médio</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card"  id="intervalo_matri">
+                                <div class="card-header">
+                                    <h4>Intervalo</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group" id="matri_var_radio">
+                                        <label for="matri_var_ini_ano">Ano Inicial:</label>
+                                        <select class="form-select my-1" name="matri_var_ini_ano" id="matri_var_ini_ano">
+                                            <option value="2009" selected>2009</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                        </select>
+                                        <label class="mt-1" for="matri_var_fin_ano">Ano Final:</label>
+                                        <select class="form-select my-1" id="matri_var_fin_ano">
+                                            <option value="2010">2010</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020" selected>2020</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achados-chave -->
+        <div class="row mt-5">
+            <div class="accordion px-0" id="accordionVinculacao">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingVinculacao">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tblVinculacao" aria-controls="tblVinculacao">
+                            <b>Achados-chave</b>
+                        </button>
+                    </h3>
+                    <div id="tblVinculacao" class="accordion-collapse collapse" aria-labelledby="headingVinculacao" data-bs-parent="#accordionVinculacao">
+                        <div class="accordion-body">
+                            <ol class="list-group list-group-flush">
+                                <li class="list-group-item"><b>1.</b> A complementação da União (Cenário C) reduz a desigualdade entre os estados sobre os recursos disponíveis para educação pela elevação dos valores de recursos por aluno.</li>
+                                <li class="list-group-item"><b>2.</b> Os valores dos indicadores apresentados na tabela para todos os anos analisados apontam que a complementação da União além de aumentar o piso do valor aluno/ano também contribui para reduzir a desigualdade do grupo como um todo.</li>
+                                <li class="list-group-item"><b>3.</b> A divergência nas regras de vinculação dos recursos estaduais é o primeiro fator que pode levar à desigualdade na receita disponível por aluno da educação básica nos diversos estados.</li>
+                                <li class="list-group-item"><b>4.</b> O rápido aumento da arrecadação de um estado, seja por motivos de produção ou variação cambial, determina obrigatoriamente o crescimento dos gastos em Manutenção e Desenvolvimento do Ensino (MDE) para cumprir o mínimo constitucional. Torna-se, assim, um segundo fator para a desigualdade dos estados no que diz respeito às receitas disponíveis em educação.</li>
+                                <li class="list-group-item"><b>5.</b> O número de matrículas é um dos principais parâmetros na definição da redistribuição dos recursos do Fundeb. Entender sua evolução é necessária para entendermos a importância da complementação da União na redução das desigualdades de recursos para a educação.</li>
+                                <li class="list-group-item"><b>6.</b> Os estados do Norte e Nordeste, ainda que com exceções, tendem a sofrer mais com a redistribuição de recursos para suas redes municipais (Cenário B). Contudo, a complementação da União (Cenário C) alivia consideravelmente este desequilíbrio na capacidade de investimento em educação entre as regiões.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notas Metodológicas -->
+        <div class="row mt-3">
+            <div class="accordion px-0" id="accordionMet">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingMet">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#txtMet" aria-controls="txtMet">
+                            <b>Notas Metodológicas</b>
+                        </button>
+                    </h3>
+                    <div id="txtMet" class="accordion-collapse collapse" aria-labelledby="headingMet" data-bs-parent="#accordionMet">
+                        <div class="accordion-body">
+                              <b>Sobre o estudo</b>
+                              <p>
+                              Esta publicação tem como base o estudo “<b>Efeitos da complementação da União no Fundeb na desigualdade interestadual de receitas da educação básica: uma análise de 2009 a 2020. 45º Encontro Anual Anpocs, 26 de outubro de 2021.</b>” de autoria de Ursula Dias Peres, Cristiane Branco Capuchinho e Rogério Machado Limonti Tibúrcio.
+                                  <a href="https://www.anpocs2021.sinteseeventos.com.br/arquivo/downloadpublic?q=YToyOntzOjY6InBhcmFtcyI7czozNToiYToxOntzOjEwOiJJRF9BUlFVSVZPIjtzOjQ6IjU5NDYiO30iO3M6MToiaCI7czozMjoiMTM4OTk1MjVlOWU1ZjU2YTRiYjA5NGMzMmUyZmU3MzUiO30%3D" target="_blank">Disponível neste link</a>.
+                              </p><br/>
+
+                              <b>Dados sobre as receitas estaduais</b>
+                              <p>
+                                  Foram utilizadas as informações dos balanços anuais, disponíveis para todas as Unidades Federativas, como fonte dos dados de arrecadação na construção dos gráficos e mapas da seção “Principais Parâmetros - Arrecadação” e para dos dados apresentados de receita potencial apresentados na seção “Cenários”. Para isso, foram coletados os dados referentes à arrecadação de impostos e transferências dos estados na Secretaria do Tesouro Nacional por meio do Siconfi (Sistema de Informações Contábeis e Fiscais do Setor Público Brasileiro), utilizando-se as receitas realizadas do Demonstrativo da Receita Corrente Líquida do RREO (Relatório Resumido de Execução Orçamentária) e as receitas brutas realizadas do anexo I-C do Balanço Anual. Todos os valores foram corrigidos pelo índice IPCA- IBGE, a preços de 1º de janeiro de 2021, para anular os efeitos inflacionários.
+                              </p><br/>
+
+                              <b>Receita potencial</b>
+                              <p>
+                                  Para o cálculo da receita potencial, foram consultadas informações do FNDE (Fundo Nacional de Desenvolvimento da Educação), tanto o consolidado da receita do relatório de dados informados pelas unidades federativas ao Siope (Sistema de Informações sobre Orçamentos Públicos em Educação) como os relatórios consolidados das transferências do Fundeb sistematizados pelo FNDE. Para o cálculo da receita potencial por aluno de cada UF, optou-se pela utilização do Demonstrativo da Receita Corrente Líquida do RREO, pois apresentava maior disponibilidade de dados ao longo dos doze anos da série histórica em que são destacados cinco pontos de relevância para o ciclo econômico (2009, 2012, 2014, 2018 e 2020). Para tanto, alguns ajustes metodológicos foram necessários e foram excluídos do estudo São Paulo e Rio Grande do Sul, por declararem informações incompletas nos relatórios do Siconfi. É importante ressaltar que os cálculos utilizaram apenas os valores correspondentes à cota parte dos estados.
+                              </p><br/>
+
+                              <b>Receita potencial por aluno</b>
+                              <p>
+                                  O cálculo para o indicador de receita potencial por aluno, apresentado na seção “Cenários”, tem como base a aplicação mínima das receitas vinculadas em MDE de cada unidade federativa, a partir do definido em sua Constituição Estadual, e o número de matrículas dos respectivos estados. Observando-se que:
+                              </p>
+                              <ul class="mx-5">
+                                  <li>o <b>Cenário A</b> simula uma situação hipotética sem Fundeb;</li>
+                                  <li>o <b>Cenário B</b> considera o Fundeb, mas desconsidera a complementação da União;</li>
+                                  <li>o <b>Cenário C</b> considera o Fundeb e a complementação da União em 10% dos recursos totais dos fundos</li>
+                              </ul><br/>
+
+                              <b>Porcentagem do teto/máximo</b>
+                              <p>
+                                  Para construção dos mapas dos Cenários e do mapa de Arrecadação no modo Indicador de Desigualdade, foi utilizado um indicador de desigualdade que denominamos de “% do teto”. Este indicador reflete qual é a proporção do valor daquele estado em relação ao máximo valor encontrado naquela série. Assim, tem como cálculo a razão entre valor do estado e o valor máximo da série correspondente.
+                              </p><br/>
+
+                              <b>Arrecadação</b>
+                              <p>
+                                  As informações dos balanços anuais, disponíveis para todas as Unidades Federativas foram usadas como fonte dos dados de arrecadação na construção dos gráficos e mapas da seção “Principais Parâmetros - Arrecadação”. Todos os valores foram corrigidos pelo índice IPCA- IBGE, a preços de 1º de janeiro de 2021, para anular os efeitos inflacionários.
+                              </p><br/>
+
+                              <b>Arrecadação per capita</b>
+                              <p>
+                                  A arrecadação potencial per capita das unidades federativas corresponde à razão matemática entre a arrecadação estadual, descrita anteriormente, e as estimativas do total da população das respectivas unidades federativas, fornecidas pelo IBGE para cada ano.
+                              </p><br/>
+
+                              <b>Matrículas</b>
+                              <p>
+                                  As fontes do número de matrículas por dependência administrativa e por etapa de ensino são as Sinopses Estatísticas da Educação Básica, compiladas pelo Inep.
+                              </p><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="lib/js/intro.min.js"></script>
+    <script src="lib/js/leaflet.js"></script>
+    <script src="lib/js/highcharts/highcharts.js"></script>
+    <script src="lib/js/highcharts/exporting.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+
+    <!-- Prod -->
+    <!-- <script src="dist/js/main.min.js"></script> -->
+
+    <!-- Dev -->
+    <script src="src/js/data/matriculas/Matriculas_Mapa.js"></script>
+    <script src="src/js/lib/math_functions.js"></script>
+    <script src="src/js/init.js"></script>
+    <script src="src/js/data/cenarios/Cenarios_Receitas.js"></script>
+    <script src="src/js/cenarios/hc_cenarios.js"></script>
+    <script src="src/js/cenarios/its_cenarios.js"></script>
+    <script src="src/js/cenarios/cenarios_maps.js"></script>
+    <script src="src/js/data/cenarios/cenarios_metrics.js"></script>
+    <script src="src/js/cenarios/cenarios_tours.js"></script>
+    <script src="src/js/arrecadacao/hc_arrecadacao.js"></script>
+    <script src="src/js/arrecadacao/its_arrecadacao.js"></script>
+    <script src="src/js/arrecadacao/arrecadacao_tours.js"></script>
+    <script src="src/js/data/arrecadacao/Arrecadacao_Map.js"></script>
+    <script src="src/js/arrecadacao/arrecadacao_maps.js"></script>
+    <script src="src/js/matriculas/matriculas.map.js"></script>
+    <script src="src/js/matriculas/its_matriculas.js"></script>
+    <script src="src/js/matriculas/hc_matriculas.js"></script>
+    <script src="src/js/matriculas/matriculas_tours.js"></script>
+
+    </body>
+    </html>

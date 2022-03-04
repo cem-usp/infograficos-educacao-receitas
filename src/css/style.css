@@ -1,0 +1,73 @@
+#map_a,#map_b,#map_c, #map_arrecadacao, #map_matriculas { height: 500px; }
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+    font-size: 18px;
+}
+.info h5 {
+    font-size: 16px;
+    margin-bottom: : 0;
+}
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+.leaflet-container {
+    background: #e0e0e0;
+    outline: 0;
+}
+.introjs-tooltip {
+    width: 450px;
+    max-width: 405px
+}
+/* Fração */
+.All {
+  display: table-row;
+}
+.Fraction {
+    display: table-cell;
+    text-align: center;
+}
+.Denominator{
+    border-top: 1px solid #000;
+    display: block;
+}
+.Fraction, .Numerator, .Denominator {
+    padding: 0px 5px;
+}
+/* IntroJS */
+.introjs-skipbutton {
+    display: none;
+}
+/* False links */
+.false-link {
+    color: #0d6efd;
+    text-decoration: underline;
+    cursor: crosshair;
+}
+
+/* Override default CEM theme fied menu */
+.header-menu.fixed > .inner.wrapper {
+  position: absolute;
+}
+
+/* Override default CEM theme accordion */
+.accordion {
+    border: 0;
+    padding: 0;
+}
